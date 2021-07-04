@@ -1,5 +1,6 @@
 #face detection program
 
+
 import cv2
 import numpy as np
 
@@ -12,11 +13,11 @@ min_size = (30, 30)
 cascade=cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 #initialize camera
-cap=cv2.VideoCapture('video2.MP4')
+cap=cv2.VideoCapture(0) #put 'video2.MP4' instead of 0 for video file input
 cap.set(3,360)
 cap.set(4,480)
 
-# ctrl+shift+ space to see valid parameter
+
 
 while True:
      check,img=cap.read()
@@ -29,6 +30,9 @@ while True:
      for(x,y,a,b) in faces :
          cv2.rectangle(img,(x,y),(x+a,y+b),(0,255,0),8)
          cv2.imshow("img",img)
-     #Press c to cancel the runned program
-     if cv2.waitKey(1) & 0xFF == ord('c'):
+     #Press q to quit the running program
+     if cv2.waitKey(1) & 0xFF == ord('q'):
              break
+cap.release()
+cv2.destroyAllWindows()
+               
